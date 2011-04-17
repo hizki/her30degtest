@@ -1,0 +1,26 @@
+Hi <%=@user1.name%> and <%=@user2.name%>!
+Your rankings are: </br>
+Player 1: <%=@user1.raking%> </br>
+Player 2: <%=@user2.raking%> </br>
+i know this: <%=@x1%> and <%=@x2%>, <%=@y1%> and <%=@y2%> </br>
+@est1 = 1 / Float(1 + 10 ** ((<%=@user2.raking%> - <%=@user1.raking%>) / 400)) </br>
+@est2 = 1 / Float(1 + 10 ** ((<%=@user1.raking%> - <%=@user2.raking%>) / 400)) </br>
+@est1 = 1 / Float(1 + 10 ** ((<%=@user2.raking - @user1.raking%>) / 400)) </br>
+@est2 = 1 / Float(1 + 10 ** ((<%=@user1.raking - @user2.raking%>) / 400)) </br>
+@est1 = 1 / Float(1 + 10 ** (<%=(@user2.raking - @user1.raking) / 400%>)) </br>
+@est2 = 1 / Float(1 + 10 ** (<%=(@user1.raking - @user2.raking) / 400%>)) </br>
+@est1 = 1 / Float(1 + <%=10 ** ((@user2.raking - @user1.raking) / 400)%>) </br>
+@est2 = 1 / Float(1 + <%=10 ** ((@user1.raking - @user2.raking) / 400)%>) </br>
+@est1 = 1 / Float(<%=1 + 10 ** ((@user2.raking - @user1.raking) / 400)%>) </br>
+@est2 = 1 / Float(<%=1 + 10 ** ((@user1.raking - @user2.raking) / 400)%>) </br>
+@est1 = 1 / <%=Float(1 + 10 ** ((@user2.raking - @user1.raking) / 400))%> </br>
+@est2 = 1 / <%=Float(1 + 10 ** ((@user1.raking - @user2.raking) / 400))%> </br>
+
+
+
+
+<%=@user1.name%>.raking = <%=@user1.raking%> + 10 * (<%=@sc1%> - <%=@est1%>) </br>
+== <%=(10 * (@sc1 - @est1)).round%> </br>
+<%=@user2.name%>.raking = <%=@user2.raking%> + 10 * (<%=@sc2%> - <%=@est2%>) </br>
+== <%=(10 * (@sc2 - @est2)).round%> </br>
+because: <%=@user1won%>

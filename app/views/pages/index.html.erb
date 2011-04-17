@@ -1,0 +1,9 @@
+<%= form_tag({:controller => "pages", :action => "backy"}, :method => "post") do %>
+  <%= label_tag(:q1, "Player 1:") %>
+  <%= text_field_tag(:q1) %>
+  <%= label_tag(:q2, "Player 2:") %>
+  <%= text_field_tag(:q2) %>
+  <%= label_tag(:q3, "Player 1 won?:") %>
+  <%= text_field_tag(:q3) %>
+  <%= submit_tag("Go!") %>
+<% end %>
