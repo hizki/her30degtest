@@ -13,9 +13,9 @@
 </div>
 <div id="menu">
 	<ul>
-		<li class="current_page_item"><a href="#">Dashboard</a></li>
-		<li><a href="#">Leagues</a></li>
-		<li><a href="#">Users</a></li>
+		<li class="current_page_item"><%= link_to "Dashboard", root_path %></li>
+		<li><%= link_to "Leagues", :controller => "leagues", :action => "index" %></li>
+		<li><%= link_to "Users", :controller => "users", :action => "index" %></li>
 	</ul>
 </div>
 <!-- end header -->

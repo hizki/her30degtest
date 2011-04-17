@@ -4,11 +4,24 @@
   <b>Name:</b>
   <%= @user.name %>
 </p>
-
+	
 <p>
-  <b>Raking:</b>
-  <%= @user.raking %>
+	<b>Leagues participating in:</b> </br>
+	<% for l in @user.leagues %>
+		<%= l.game %> 
+		<% session %>
+		<%= link_to "Remove from league", :action => "remove_from_league"%></br>
+	<% end %>
 </p>
+	
+<p>
+	<b>Enter another league:</b> </br>
+	<% for l in @other_leagues %>
+		<%= l.game %> </br>
+	<% end %>
+</p>
+	
+
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

@@ -10,10 +10,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def remove_from_league
+    
+  end
+
   # GET /users/1
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
+    
+    @other_leagues = League.all - @user.leagues
 
     respond_to do |format|
       format.html # show.html.erb

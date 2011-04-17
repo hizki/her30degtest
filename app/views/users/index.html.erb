@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Raking</th>
+    <th>Leagues</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,7 +12,11 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.name %></td>
-    <td><%= user.raking %></td>
+	<td>
+		<% for l in user.leagues %>
+    		<%=	l.game %>:<%= Ranking.find(user_id = user.id, league_id = l.id).ranking %>
+		<% end %>
+	</td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
