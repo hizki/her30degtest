@@ -1,4 +1,6 @@
 Her30degtest::Application.routes.draw do
+  resources :leagues
+
   resources :pages
   resources :users
 

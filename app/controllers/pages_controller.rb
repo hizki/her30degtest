@@ -14,7 +14,7 @@ class PagesController < ApplicationController
   def backy
     uid1 = params[:q1]
     uid2 = params[:q2]
-    user1won = params[:q3]
+    user1won = params[:win]
     
     @user1 = User.find(uid1)
     @user2 = User.find(uid2)

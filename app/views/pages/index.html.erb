@@ -1,9 +1,14 @@
-<%= form_tag({:controller => "pages", :action => "backy"}, :method => "post") do %>
-  <%= label_tag(:q1, "Player 1:") %>
-  <%= text_field_tag(:q1) %>
-  <%= label_tag(:q2, "Player 2:") %>
-  <%= text_field_tag(:q2) %>
-  <%= label_tag(:q3, "Player 1 won?:") %>
-  <%= text_field_tag(:q3) %>
-  <%= submit_tag("Go!") %>
-<% end %>
+
+<center>
+	<%= form_tag({:controller => "pages", :action => "backy"}, :method => "post") do %>
+		<%= label_tag(:q1, "Player 1:") %>
+		<%= text_field_tag(:q1) %>
+		<%= label_tag(:q2, "Player 2:") %>
+		<%= text_field_tag(:q2) %> </br> 
+		<%= radio_button_tag(:win, "true") %>
+		<%= label_tag(:win, "Player 1 won") %>
+		<%= radio_button_tag(:win, "false") %>
+		<%= label_tag(:win, "Player 2 won") %>
+		<%= submit_tag("Go!") %>
+	<% end %>
+</center>
