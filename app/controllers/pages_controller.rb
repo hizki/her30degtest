@@ -10,6 +10,7 @@ class PagesController < ApplicationController
     end
   end
 
+  
   def backy
     uid1 = params[:q1]
     uid2 = params[:q2]
@@ -18,16 +19,18 @@ class PagesController < ApplicationController
     @user1 = User.find(uid1)
     @user2 = User.find(uid2)
     
-    est1 = 1 / Float(1 + 10 ** ((@user2.raking - @user1.raking) / 400))
-    est2 = 1 / Float(1 + 10 ** ((@user1.raking - @user2.raking) / 400))
+    rank1 = Float(@user1.raking)
+    rank2 = Float(@user2.raking)
+    est1 = 1 / Float(1 + 10 ** ((rank2 - rank1) / 400))
+    est2 = 1 / Float(1 + 10 ** ((rank1 - rank2) / 400))
     
     sc1 = 0
     sc2 = 0
     
     if user1won == "true"
-      @sc1 = 1
+      sc1 = 1
     else
-      @sc2 = 1
+      sc2 = 1
     end
     
     @user1.raking = Integer((@user1.raking + 10 * (sc1 - est1)).round)
