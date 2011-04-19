@@ -5,7 +5,25 @@ Her30degtest::Application.routes.draw do
   resources :users
 
   root :to => "pages#index"
+  match 'users/:id/remove_from_league' => 'Users#remove_from_league'
+  match 'users/:id/join_league' => 'Users#join_league'
+  match 'leagues/:id/compete' => 'Leagues#compete'
 
+  resources :users do
+    member do
+      get 'remove_from_league'
+      get 'join_league'
+    end
+  end
+
+  resources :leagues do
+    member do
+      get 'compete'
+    end
+  end
+  
+  match ':controller(/:action(/:id(.:format)))'
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -62,5 +80,4 @@ Her30degtest::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id(.:format)))'
 end

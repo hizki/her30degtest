@@ -14,7 +14,7 @@
     <td><%= user.name %></td>
 	<td>
 		<% for l in user.leagues %>
-    		<%=	l.game %>:<%= Ranking.find(user_id = user.id, league_id = l.id).ranking %>
+    		<%=	l.game %>:<%= Ranking.where(:user_id => user.id, :league_id => l.id)[0].ranking %>
 		<% end %>
 	</td>
     <td><%= link_to 'Show', user %></td>

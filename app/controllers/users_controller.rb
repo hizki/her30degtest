@@ -11,7 +11,36 @@ class UsersController < ApplicationController
   end
 
   def remove_from_league
+    l = League.find(params[:lid])
+    ls = User.find(params[:id]).leagues
+    if ls.include?(l)
+      User.find(params[:id]).leagues.delete(League.find(params[:lid]))
+      @msg = "User is now removed from this league"
+    else
+      @msg = "User is not participating in this league"
+    end
     
+    respond_to do |format|
+      format.html # remove_from_league.html.erb
+    end
+  end
+
+  def join_league
+    ls = User.find(params[:id]).leagues
+    l = League.find(params[:lid])
+    if (ls.include?(l))
+      @msg = "User already participating in this league"
+    else
+      User.find(params[:id]).leagues.push(League.find(params[:lid]))
+      r = Ranking.where(:user_id => params[:id], :league_id => params[:lid])[0]
+      r.ranking = 1000
+      r.save
+      
+      @msg = "User is now joined."
+    end
+    respond_to do |format|
+      format.html # remove_from_league.html.erb
+    end
   end
 
   # GET /users/1

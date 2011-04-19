@@ -9,15 +9,15 @@
 	<b>Leagues participating in:</b> </br>
 	<% for l in @user.leagues %>
 		<%= l.game %> 
-		<% session %>
-		<%= link_to "Remove from league", :action => "remove_from_league"%></br>
+		<%= link_to "Remove from league", remove_from_league_user_path(:lid => l.id) %> </br>
 	<% end %>
 </p>
 	
 <p>
 	<b>Enter another league:</b> </br>
 	<% for l in @other_leagues %>
-		<%= l.game %> </br>
+		<%= l.game %>
+		<%= link_to "Join league", join_league_user_path(:lid => l.id) %> </br>
 	<% end %>
 </p>
 	
