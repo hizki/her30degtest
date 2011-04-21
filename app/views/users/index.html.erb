@@ -4,25 +4,20 @@
 	<h1>Users</h1>
 	<%= link_to 'New User', new_user_path %><br /><br />
 
-	<table>
+	<table align="center" cellpadding="6px">
 	  <tr>
-		<th>ID</th>
-		<th></th>
-	    <th>Name</th>
-	    <th>Leagues</th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
+		<th align="left">ID</th>
+	    <th align="left">Name</th>
+	    <th align="left">Leagues</th>
 	  </tr>
 
 	<% @users.each do |user| %>
 	  <tr>
 		<td><%= user.member_id %></td>
-		<td> </td>
 	    <td><%= link_to user.name, user %></td>
 		<td>
 			<% for l in user.leagues %>
-	    		<%=	l.game %>:<%= Ranking.where(:user_id => user.id, :league_id => l.id)[0].ranking %>
+	    		| <%=	l.game %>:<%= Ranking.where(:user_id => user.id, :league_id => l.id)[0].ranking %>
 			<% end %>
 		</td>
 	  </tr>

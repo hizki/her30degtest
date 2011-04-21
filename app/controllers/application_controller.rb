@@ -8,5 +8,14 @@ class ApplicationController < ActionController::Base
   	  redirect_to(:controller => 'pages', :action => 'login')
   	end
   end
-
+  
+  def sem2int(sem)
+    if sem == "Winter"
+      1
+    elsif sem == "Spring"
+      2
+    else
+      3
+    end
+  end
 end

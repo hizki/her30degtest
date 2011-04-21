@@ -50,7 +50,13 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     
-    @other_leagues = League.all - @user.leagues
+    @leagues = @user.leagues
+    @leagues.sort! do |a,b|
+      comp = (b.year <=> a.year)
+      comp.zero? ? (sem2int(b.semester) <=> sem2int(a.semester)) : comp
+    end
+    
+    @other_leagues = League.all - @leagues
 
     respond_to do |format|
       format.html # show.html.erb
@@ -78,6 +84,7 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
+    @user.play_count = 0
 
     respond_to do |format|
       if @user.save

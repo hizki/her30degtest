@@ -9,8 +9,8 @@
 	
 <p>
 	<b>Leagues participating in:</b> <br />
-	<% for l in @user.leagues %>
-		<%= l.game %> 
+	<% for l in @leagues %>
+		<%= l.game %> (<%= l.semester %> <%= l.year %>) 
 		<%= link_to "Remove from league", remove_from_league_user_path(:lid => l.id) %> <br />
 	<% end %>
 </p>
@@ -18,7 +18,7 @@
 <p>
 	<b>Enter another league:</b> <br />
 	<% for l in @other_leagues %>
-		<%= l.game %>
+		<%= l.game %> (<%= l.semester %> <%= l.year %>) 
 		<%= link_to "Join league", join_league_user_path(:lid => l.id) %> <br />
 	<% end %>
 </p>
