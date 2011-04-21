@@ -1,14 +1,13 @@
 Her30degtest::Application.routes.draw do
-  resources :leagues
-
-  resources :pages
-  resources :users
-
-  root :to => "pages#index"
-  match 'users/:id/remove_from_league' => 'Users#remove_from_league'
-  match 'users/:id/join_league' => 'Users#join_league'
-  match 'leagues/:id/compete' => 'Leagues#compete'
-
+  root :to => "leagues#index"
+  match 'logout' => 'pages'
+  match 'users/:id/join_league' => 'users#join_league'
+  match 'leagues/:id/compete' => 'leagues#compete'
+  match 'pages/login' => 'pages#login'
+  match 'pages/authenticate' => 'pages#authenticate'
+  
+  resources :pages 
+  
   resources :users do
     member do
       get 'remove_from_league'
@@ -21,10 +20,9 @@ Her30degtest::Application.routes.draw do
       get 'compete'
     end
   end
-  
-  match ':controller(/:action(/:id(.:format)))'
-  
 
+  # match ':controller(/:action(/:id(.:format)))'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

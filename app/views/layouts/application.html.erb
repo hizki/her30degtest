@@ -3,6 +3,7 @@
 <title></title>
 <%= stylesheet_link_tag :all %>
 <%= javascript_include_tag :defaults %>
+<%= javascript_include_tag "jquery.js"%>
 <%= csrf_meta_tag %>
 </head>
 <body>
@@ -13,9 +14,16 @@
 </div>
 <div id="menu">
 	<ul>
-		<li class="current_page_item"><%= link_to "Dashboard", root_path %></li>
-		<li><%= link_to "Leagues", :controller => "leagues", :action => "index" %></li>
-		<li><%= link_to "Users", :controller => "users", :action => "index" %></li>
+		<% if session[:loggedin] %>
+			<li class="menu-tab" id="leaguesTab"><%= link_to "Leagues", 
+				:controller => "leagues", :action => "index" %></li>
+			<li class="menu-tab" id="usersTab"><%= link_to "Users", 
+				:controller => "users", :action => "index" %></li>
+  	  		<li class="menu-tab"><%= link_to "Logout",  
+				:controller => 'pages', :action => 'logout' %></li>
+  		<% end %>
+		
+		
 	</ul>
 </div>
 <!-- end header -->

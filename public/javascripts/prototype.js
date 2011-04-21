@@ -1037,7 +1037,7 @@ var Enumerable = (function() {
     filter:     findAll,
     grep:       grep,
     include:    include,
-    member:     include,
+    <br />:     include,
     inGroupsOf: inGroupsOf,
     inject:     inject,
     invoke:     invoke,

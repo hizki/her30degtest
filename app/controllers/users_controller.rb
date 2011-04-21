@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def remove_from_league
+    @user = User.find(params[:id])
     l = League.find(params[:lid])
     ls = User.find(params[:id]).leagues
     if ls.include?(l)
@@ -21,11 +22,12 @@ class UsersController < ApplicationController
     end
     
     respond_to do |format|
-      format.html # remove_from_league.html.erb
+      format.html { redirect_to(@user, :notice => @msg) }
     end
   end
 
   def join_league
+    @user = User.find(params[:id])
     ls = User.find(params[:id]).leagues
     l = League.find(params[:lid])
     if (ls.include?(l))
@@ -39,7 +41,7 @@ class UsersController < ApplicationController
       @msg = "User is now joined."
     end
     respond_to do |format|
-      format.html # remove_from_league.html.erb
+      format.html { redirect_to(@user, :notice => @msg) }
     end
   end
 

@@ -2,22 +2,24 @@
 
 <p>
   <b>Name:</b>
-  <%= @user.name %>
+  <%= @user.name %> <br />
+  <b>Member ID:</b>
+  <%= @user.member_id %>
 </p>
 	
 <p>
-	<b>Leagues participating in:</b> </br>
+	<b>Leagues participating in:</b> <br />
 	<% for l in @user.leagues %>
 		<%= l.game %> 
-		<%= link_to "Remove from league", remove_from_league_user_path(:lid => l.id) %> </br>
+		<%= link_to "Remove from league", remove_from_league_user_path(:lid => l.id) %> <br />
 	<% end %>
 </p>
 	
 <p>
-	<b>Enter another league:</b> </br>
+	<b>Enter another league:</b> <br />
 	<% for l in @other_leagues %>
 		<%= l.game %>
-		<%= link_to "Join league", join_league_user_path(:lid => l.id) %> </br>
+		<%= link_to "Join league", join_league_user_path(:lid => l.id) %> <br />
 	<% end %>
 </p>
 	
@@ -25,4 +27,6 @@
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Remove', @user, :confirm => 'Are you sure?', :method => :delete %> |
 <%= link_to 'Back', users_path %>
+

@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  skip_before_filter :check_session, :only => [:login, :authenticate]
+
   # GET /pages
   # GET /pages.xml
   def index
@@ -10,43 +12,35 @@ class PagesController < ApplicationController
     end
   end
 
-  
-  def backy
-    uid1 = params[:q1]
-    uid2 = params[:q2]
-    user1won = params[:win]
-    
-    @user1 = User.find(uid1)
-    @user2 = User.find(uid2)
-    
-    rank1 = Float(@user1.raking)
-    rank2 = Float(@user2.raking)
-    est1 = 1 / Float(1 + 10 ** ((rank2 - rank1) / 400))
-    est2 = 1 / Float(1 + 10 ** ((rank1 - rank2) / 400))
-    
-    sc1 = 0
-    sc2 = 0
-    
-    if user1won == "true"
-      sc1 = 1
-    else
-      sc2 = 1
-    end
-    
-    @user1.raking = Integer((@user1.raking + 10 * (sc1 - est1)).round)
-    @user2.raking = Integer((@user2.raking + 10 * (sc2 - est2)).round) 
-    
-    @user1.save
-    @user2.save
+  def authenticate
+		@username = params[:login]
+    @pass = params[:pass]
+    if @username == "admin"
+      if Digest::SHA1.hexdigest(@pass) == "9189df0c394b3632e4e34a80f685b932a029785b"
+  			session[:loggedin] = true
+  			redirect_to :controller => 'leagues', :action => 'index'
+			else
+			  flash[:notice] = "Invalid User/Password"
+  			redirect_to :action => 'login'
+  		end
+  	else
+			flash[:notice] = "Invalid User/Password"
+			redirect_to :action => 'login'
+  	end
+  end
+
+  def login
     
     respond_to do |format|
-      format.html # backy.html.erb
+      format.html
     end
   end
-      
-
   
-
+  def logout
+    session[:loggedin] = false
+    
+    redirect_to :action => 'login'
+  end
   # GET /pages/1
   # GET /pages/1.xml
   def show
