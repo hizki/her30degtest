@@ -19,6 +19,44 @@ class LeaguesController < ApplicationController
   def compete
     @league = League.find(params[:id])
     
+    user1won = params[:win]
+    
+    if user1won != "draw"
+      uid1 = params[:q1]
+      uid2 = params[:q2]
+    
+      @user1 = User.where(:member_id => uid1)[0]
+      @user2 = User.where(:member_id => uid2)[0]
+    
+      r1 = @user1.rankings.where(:league_id => params[:id])[0]
+      r2 = @user2.rankings.where(:league_id => params[:id])[0]
+    
+      rank1 = Float(r1.ranking)
+      rank2 = Float(r2.ranking)
+    
+      est1 = 1 / Float(1 + 10 ** ((rank2 - rank1) / 400))
+      est2 = 1 / Float(1 + 10 ** ((rank1 - rank2) / 400))
+        
+      if user1won == "true"
+        sc1 = 1
+        sc2 = 0
+      else
+        sc1 = 0
+        sc2 = 1
+      end
+    
+      r1.ranking = Integer((rank1 + 10 * (sc1 - est1)).round)
+      r2.ranking = Integer((rank2 + 10 * (sc2 - est2)).round) 
+    
+      r1.save
+      r2.save
+      
+      @user1.play_count += 1
+      @user2.play_count += 1
+      
+      @user1.save
+      @user2.save
+    end
     
     respond_to do |format|
       format.html { redirect_to(@league, :notice => 'Match outcome was recodred.') }
