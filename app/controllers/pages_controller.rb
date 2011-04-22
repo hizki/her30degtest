@@ -32,6 +32,7 @@ class PagesController < ApplicationController
   end
 
   def login
+    # TODO: check if session doesnt already have a login
     
     respond_to do |format|
       format.html

@@ -17,6 +17,9 @@ class LeaguesController < ApplicationController
 
 
   def compete
+    @league = League.find(params[:id])
+    
+    
     respond_to do |format|
       format.html { redirect_to(@league, :notice => 'Match outcome was recodred.') }
     end

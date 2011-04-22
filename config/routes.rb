@@ -21,7 +21,7 @@ Her30degtest::Application.routes.draw do
     end
   end
 
-  # match ':controller(/:action(/:id(.:format)))'
+  match ':controller(/:action(/:id(.:format)))'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
