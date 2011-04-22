@@ -1,4 +1,4 @@
-class Add<br />IdToUser < ActiveRecord::Migration
+class AddMemberIdToUser < ActiveRecord::Migration
   def self.up
     add_column :users, :member_id, :integer
   end
