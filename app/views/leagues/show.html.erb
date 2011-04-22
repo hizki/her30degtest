@@ -1,0 +1,46 @@
+<center>
+	<p>
+	  <h1><%= @league.game %></h1>
+	  <%= @league.semester %> <%= @league.year %>
+	</p>
+
+	<table>
+	  <tr>
+		<th>ID</th>
+	    <th>Name</th>
+		<th>Ranking</th>
+	  </tr>
+
+		<% for u in @users %>
+		  <tr>
+			<td><%= u.member_id %></td>
+		    <td><%= u.name %></td>
+		    <td><%= u.rankings.where(:league_id => params[:id])[0].ranking %></td>
+		  </tr>
+		<% end %>
+
+	</table>
+	<br /><br />
+	<p>
+		<%= form_tag(compete_league_path , :method => "post") do %>
+			<%= label_tag(:q1, "Player 1 ID:") %>
+			<%= text_field_tag(:q1) %> <br /><br />
+			<%= label_tag(:q2, "Player 2 ID:") %>
+			<%= text_field_tag(:q2) %> <br /><br />
+			<%= radio_button_tag(:win, "true") %>
+			<%= label_tag(:win, "Player 1 won") %>
+			<%= radio_button_tag(:win, "draw") %>
+			<%= label_tag(:win, "Draw") %>
+			<%= radio_button_tag(:win, "false") %>
+			<%= label_tag(:win, "Player 2 won") %><br /><br />
+			<%= submit_tag("Go!") %>
+		<% end %>
+	</p>	
+</center>
+
+
+<br /><br /><br />
+<p id="notice"><%= notice %></p>
+<%= link_to 'Edit', edit_league_path(@league) %> |
+<%= link_to 'Remove', @league, :confirm => 'Are you sure?', :method => :delete %> |
+<%= link_to 'Back', leagues_path %> 

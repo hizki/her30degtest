@@ -1,0 +1,21 @@
+<script>changeMenuTab("leaguesTab");</script>
+<center>
+	<h1>Leagues</h1>
+	<%= link_to 'New League', new_league_path %><br /><br />
+	<table>
+	<% @leagues.each do |league| %>
+	  <tr>	
+	    <td><center><%= link_to league.game, league %></center></td>
+	  </tr>
+	  <tr>
+		<td><center><%= league.semester %> <%= league.year %></center></td>
+	  </tr>
+	  <tr>
+		<td>participants: <%= league.users.count %></td>
+	  </tr>
+	  <tr>
+		<td><br /></td>
+	  </tr>	
+	<% end %>
+	</table>
+

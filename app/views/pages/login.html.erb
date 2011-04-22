@@ -1,0 +1,10 @@
+<center>
+	<%= form_tag("authenticate") do %><br /><br />
+		<h1><%= label_tag(:login, "Username")%></h1>
+		<%= text_field_tag(:login) %> <br /><br />
+		<h1><%= label_tag(:pass, "Password") %></h1>
+		<%= password_field_tag(:pass) %> <br /><br />
+		<%= submit_tag("LOGIN") %>
+		<p id="notice"><%= notice %></p>
+	<% end %>
+</center>
