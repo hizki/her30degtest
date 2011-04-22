@@ -48,6 +48,8 @@ class LeaguesController < ApplicationController
       r1.ranking = Integer((rank1 + 10 * (sc1 - est1)).round)
       r2.ranking = Integer((rank2 + 10 * (sc2 - est2)).round) 
     
+      r1.save
+      r2.save
 
     end
     
