@@ -22,7 +22,7 @@
   	  		<li class="menu-tab"><%= link_to "Logout",  
 				:controller => 'pages', :action => 'logout' %></li>
 
-			<div style="float: right; margin-right: 20px; margin-top: 8px;">
+			<div class="search">
 				<%= form_tag(:controller => 'pages', :action => 'search') do %>
 					<%= text_field_tag(:q) %>
 					<%= submit_tag("Search") %>

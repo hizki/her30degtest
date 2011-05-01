@@ -117,6 +117,12 @@ img.right {
 	background: url(../images/img06.gif) repeat-x;
 }
 
+#menu .search {
+	float: right;
+	margin-right: 20px;
+	margin-top: 8px;
+}
+
 /* Page */
 
 #page {
