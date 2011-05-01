@@ -1,0 +1,14 @@
+<center>
+	Search results for "<%= @query %>": <br /><br />
+
+	Users:<br />
+	<% for u in @user_results %>
+		<%= link_to u.name, u %><br />
+	<% end %>
+	
+	<br />
+	Leagues:<br />
+	<% for l in @league_results %>
+		<%= link_to l.game, l %><br />
+	<% end %>
+</center>
