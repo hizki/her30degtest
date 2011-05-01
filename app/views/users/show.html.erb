@@ -12,7 +12,8 @@
 <p>
 	<b>Leagues participating in:</b> <br />
 	<% for l in @leagues %>
-		<%= l.game %> (<%= l.semester %> <%= l.year %>) 
+		<%= link_to l.game, l %> (<%= l.semester %> <%= l.year %>)
+			Score: <%= Ranking.where(:user_id => @user.id, :league_id => l.id)[0].ranking %>
 		<%= link_to "Remove from league", remove_from_league_user_path(:lid => l.id) %> <br />
 	<% end %>
 </p>
@@ -20,7 +21,7 @@
 <p>
 	<b>Enter another league:</b> <br />
 	<% for l in @other_leagues %>
-		<%= l.game %> (<%= l.semester %> <%= l.year %>) 
+		<%= link_to l.game, l %> (<%= l.semester %> <%= l.year %>) 
 		<%= link_to "Join league", join_league_user_path(:lid => l.id) %> <br />
 	<% end %>
 </p>
