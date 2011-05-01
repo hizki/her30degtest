@@ -6,7 +6,9 @@
   <b>Name:</b>
   <%= @user.name %> <br />
   <b>Member ID:</b>
-  <%= @user.member_id %>
+  <%= @user.member_id %> <br />
+  <b>Email Address:</b>
+  <%= @user.email %>
 </p>
 	
 <p>
@@ -27,7 +29,7 @@
 </p>
 	
 
-
+<br /><br /><br />
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Remove', @user, :confirm => 'Are you sure?', :method => :delete %> |
