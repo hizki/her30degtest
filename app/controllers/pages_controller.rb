@@ -16,9 +16,7 @@ class PagesController < ApplicationController
 		@username = params[:login]
     @pass = params[:pass]
     if @username == "admin"
-#      if Digest::SHA1.hexdigest(@pass) == "9189df0c394b3632e4e34a80f685b932a029785b"
-# TODO: remove true expression  
-      if true
+      if Digest::SHA1.hexdigest(@pass) == "9189df0c394b3632e4e34a80f685b932a029785b"
   			session[:loggedin] = true
   			redirect_to :controller => 'leagues', :action => 'index'
 			else
