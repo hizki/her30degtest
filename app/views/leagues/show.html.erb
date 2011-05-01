@@ -4,18 +4,20 @@
 	  <%= @league.semester %> <%= @league.year %>
 	</p>
 
-	<table>
+	<table align="center" cellpadding="6px">
 	  <tr>
-		<th>ID</th>
+		<th>Rank</th>
 	    <th>Name</th>
-		<th>Ranking</th>
+		<th>ID</th>
 	  </tr>
-
+		
+		<% @i = 0 %>
 		<% for u in @users %>
+			<% @i += 1 %>
 		  <tr>
-			<td><%= u.member_id %></td>
-		    <td><%= u.name %></td>
-		    <td><%= u.rankings.where(:league_id => params[:id])[0].ranking %></td>
+			<td><center><%= @i %></center></td>
+		    <td><%= link_to u.name, u %></td>
+		    <td><%= u.member_id %></td>
 		  </tr>
 		<% end %>
 
