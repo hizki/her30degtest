@@ -4,9 +4,10 @@ Her30degtest::Application.routes.draw do
   match 'users/:id/join_league' => 'users#join_league'
   match 'leagues/:id/compete' => 'leagues#compete'
   match 'pages/login' => 'pages#login'
+  match 'pages/search' => 'pages#search'
   match 'pages/authenticate' => 'pages#authenticate'
   
-  resources :pages 
+  resources :pages
   
   resources :users do
     member do

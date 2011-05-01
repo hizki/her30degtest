@@ -53,6 +53,24 @@ class PagesController < ApplicationController
     end
   end
 
+  def search
+    @query = params[:q]
+    @user_results = []
+    @user_results.concat(User.find(:all, :conditions => ["name like ?" , "%" + @query + "%"]))
+    @user_results.concat(User.find(:all, :conditions => ["member_id like ?" , "%" + @query + "%"]))
+    @user_results.concat(User.find(:all, :conditions => ["email like ?" , "%" + @query + "%"]))
+
+    @league_results = []
+    @league_results.concat(League.find(:all, :conditions => ["game like ?" , "%" + @query + "%"]))
+    @league_results.concat(League.find(:all, :conditions => ["semester like ?" , "%" + @query + "%"]))
+    @league_results.concat(League.find(:all, :conditions => ["year like ?" , @query]))
+    
+    
+    respond_to do |format|
+      format.html
+    end
+  end
+
   # GET /pages/new
   # GET /pages/new.xml
   def new
